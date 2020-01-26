@@ -1,4 +1,6 @@
 function deepObjectCloning(objTarget, objSource) {
+    objTarget = Object.assign(objTarget, objSource);
+
     for (const prop in objTarget) {
         const propTarget = objTarget[prop];
         const propSource = objSource[prop];
@@ -8,6 +10,8 @@ function deepObjectCloning(objTarget, objSource) {
             deepObjectCloning(propTarget, propSource);
         }
     }
+
+    return objTarget;
 }
 
 const workout = {
@@ -18,13 +22,14 @@ const workout = {
             weekends: 'Sun'
         },
         hours: 2
-    },
-
+    }
 };
 
-const workoutClone = Object.assign({}, workout);
+let workoutClone = {
+    price: 100
+};
 
-deepObjectCloning(workoutClone, workout);
+workoutClone = deepObjectCloning(workoutClone, workout);
 
 workoutClone.type = 'Yoga';
 workoutClone.schedule.hours = 5;
