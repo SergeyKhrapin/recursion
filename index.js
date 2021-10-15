@@ -1,5 +1,5 @@
 function deepObjectCloning(objTarget, objSource) {
-    objTarget = Object.assign(objTarget, objSource);
+    Object.assign(objTarget, objSource);
 
     for (const prop in objTarget) {
         const propTarget = objTarget[prop];
